@@ -1,0 +1,57 @@
+<script>
+  // make the table sortable
+  $(document).ready(function() {
+    $('#searchResults').DataTable({searching: false, paging: false, info: false});
+  });
+
+  // make the rows clickable
+  $(document).ready(function($) {
+    $(".clickable-row").click(function() {
+      window.location = $(this).data("href");
+    });
+  });
+</script>
+
+<div class="container">
+  <table id="searchResults" class="table table-striped table-hover table-responsive">
+    <caption>
+      <% if @filter == 'all' %>
+        All cards
+      <% elsif @criteria.nil? %>
+        Found cards matching: <%= @normalized_terms.map(&:to_s) %>
+      <% else %>
+        Found cards for: <%= @criteria %>
+      <% end %>
+    </caption>
+    <thead>
+      <tr>
+        <th>Mould ID</th>
+        <th>Version</th>
+        <th>Name</th>
+        <th>Set</th>
+        <th>Kind</th>
+        <th>Type</th>
+        <th>Rank</th>
+        <th>Cost</th>
+        <th>Health</th>
+        <th>Damage</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% @found.each do |found| %>
+      <tr class="clickable-row" style="cursor: pointer;" data-href="/cards/show/<%= found.mould_id %>/<%= found.version %>">
+        <th><%= found.mould_id %></th>
+        <th><%= found.version %></th>
+        <th><%= found.name %></th>
+        <th><%= found.set %></th>
+        <th><%= found.kind %></th>
+        <th><%= found.type %></th>
+        <th><%= found.rank %></th>
+        <th><%= found.cost %></th>
+        <th><%= found.health %></th>
+        <th><%= found.damage %></th>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
