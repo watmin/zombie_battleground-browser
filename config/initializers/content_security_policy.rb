@@ -55,7 +55,7 @@ if Rails.env.prod?
       font_src: %w('self' fonts.googleapis.com fonts.gstatic.com data:),
       form_action: %w('self'),
       frame_ancestors: %w('none'),
-      img_src: %w(data: loom.games),
+      img_src: %w('self' data: loom.games),
       manifest_src: %w('self'),
       object_src: %w('self'),
       sandbox: %w(allow-scripts allow-forms),
