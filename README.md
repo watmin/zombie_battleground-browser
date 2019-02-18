@@ -1,24 +1,9 @@
-# README
+# ZombieBattlegroundBrowser
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Challenge Accepted](https://medium.com/loom-network/https-medium-com-loom-network-introducing-zombie-battleground-public-api-600-pack-giveaway-859fea0dc406)
 
-Things you may want to cover:
+Source code for https://zombiebattleground.shields.wtf/
 
-* Ruby version
+## Work in progress
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This is definitely not done, the only things that work are searching cards and viewing cards.
