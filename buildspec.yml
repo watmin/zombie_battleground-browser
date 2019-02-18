@@ -1,0 +1,16 @@
+---
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - 'gem install bundler'
+      - 'bundle install --with test'
+  build:
+    commands:
+       - 'bundle exec test'
+
+artifacts:
+  files:
+    - '**/*'
+  name: zombie_battleground-browser-$(date +%Y-%m-%d)

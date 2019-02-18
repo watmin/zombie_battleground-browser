@@ -261,8 +261,5 @@ DEPENDENCIES
   web-console (>= 3.3.0)
   zombie_battleground-api
 
-RUBY VERSION
-   ruby 2.6.0p0
-
 BUNDLED WITH
-   1.17.2
+   1.17.3
