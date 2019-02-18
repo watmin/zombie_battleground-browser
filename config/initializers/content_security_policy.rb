@@ -52,7 +52,7 @@ if Rails.env.prod?
       block_all_mixed_content: true, # see http://www.w3.org/TR/mixed-content/
       child_src: %w('self'), # if child-src isn't supported, the value for frame-src will be set.
       connect_src: %w(wss:),
-      font_src: %w('self' data:),
+      font_src: %w('self' fonts.googleapis.com data:),
       form_action: %w('self'),
       frame_ancestors: %w('none'),
       img_src: %w(data: loom.games),
@@ -60,7 +60,7 @@ if Rails.env.prod?
       object_src: %w('self'),
       sandbox: true, # true and [] will set a maximally restrictive setting
       script_src: %w('self' cdn.datatables.net),
-      style_src: %w('unsafe-inline' stackpath.bootstrapcdn.com),
+      style_src: %w('self' 'unsafe-inline' stackpath.bootstrapcdn.com cdn.datatables.net),
       worker_src: %w('self'),
       upgrade_insecure_requests: true, # see https://www.w3.org/TR/upgrade-insecure-requests/
     }
