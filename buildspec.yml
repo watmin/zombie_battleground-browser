@@ -8,7 +8,7 @@ phases:
       - 'bundle install --with test'
   build:
     commands:
-       - 'bundle exec test'
+       - 'bundle exec rails test'
 
 artifacts:
   files:
