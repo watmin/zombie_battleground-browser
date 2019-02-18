@@ -52,7 +52,7 @@ if Rails.env.prod?
       block_all_mixed_content: true, # see http://www.w3.org/TR/mixed-content/
       child_src: %w('self'), # if child-src isn't supported, the value for frame-src will be set.
       connect_src: %w(wss:),
-      font_src: %w('self' fonts.googleapis.com data:),
+      font_src: %w('self' fonts.googleapis.com fonts.gstatic.com data:),
       form_action: %w('self'),
       frame_ancestors: %w('none'),
       img_src: %w(data: loom.games),
