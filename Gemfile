@@ -18,6 +18,7 @@ gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'pry-rails'
 gem 'zombie_battleground-api'
+gem 'secure_headers'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
