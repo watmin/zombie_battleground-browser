@@ -58,9 +58,9 @@ if Rails.env.prod?
       img_src: %w(data: loom.games),
       manifest_src: %w('self'),
       object_src: %w('self'),
-      sandbox: true, # true and [] will set a maximally restrictive setting
+      sandbox: %w(allow-scripts allow-forms),
       script_src: %w('self' cdn.datatables.net),
-      style_src: %w('self' 'unsafe-inline' stackpath.bootstrapcdn.com cdn.datatables.net),
+      style_src: %w('self' 'unsafe-inline' stackpath.bootstrapcdn.com cdn.datatables.net fonts.googleapis.com),
       worker_src: %w('self'),
       upgrade_insecure_requests: true, # see https://www.w3.org/TR/upgrade-insecure-requests/
     }
