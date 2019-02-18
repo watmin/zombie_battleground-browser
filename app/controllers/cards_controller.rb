@@ -32,6 +32,7 @@ class CardsController < ApplicationController
                     card.rank.match?(term) ||
                     card.rarity.match?(term) ||
                     card.set.match?(term) ||
+                    card.kind.match?(term) ||
                     card.type.match?(term)
 
         @found << card

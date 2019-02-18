@@ -23,7 +23,9 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-*.sw* # vim swaps
+# vim swaps
+*.swp
+*.swo
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
