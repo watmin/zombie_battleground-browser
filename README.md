@@ -6,4 +6,7 @@ Source code for https://zombiebattleground.shields.wtf/
 
 ## Work in progress
 
-This is definitely not done, the only things that work are searching cards and viewing cards.
+This is definitely not done, functional components:
+* Searching cards
+* Viewing cards
+* Cards page
