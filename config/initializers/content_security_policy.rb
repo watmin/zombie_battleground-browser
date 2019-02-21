@@ -57,7 +57,7 @@ SecureHeaders::Configuration.default do |config|
     img_src: %w('self' data: loom.games),
     manifest_src: %w('self'),
     object_src: %w('self'),
-    sandbox: %w(allow-scripts allow-forms allow-same-origin),
+    sandbox: %w(allow-scripts allow-forms allow-same-origin allow-popups),
     script_src: %w('self' 'unsafe-inline' cdn.datatables.net),
     style_src: %w('self' 'unsafe-inline' stackpath.bootstrapcdn.com cdn.datatables.net fonts.googleapis.com),
     worker_src: %w('self'),

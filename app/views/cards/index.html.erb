@@ -1,35 +1,33 @@
-<div class="container">
-  </br>
-  <div class="list-group">
-    <p>All Cards</p>
-    <a href="/cards/filter/all" class="list-group-item list-group-item-action">All</a>
-  </div>
-  </br>
-  <div class="list-group">
-    <p>Cards by Set</p>
-    <% ZombieBattleground::Api.card_sets.each do |set| %>
-    <a href="/cards/filter/set/<%= set %>" class="list-group-item list-group-item-action"><%= set.capitalize %></a>
-    <% end %>
-  </div>
-  </br>
-  <div class="list-group">
-    <p>Cards by Kind</p>
-    <% ZombieBattleground::Api.card_kinds.each do |kind| %>
-    <a href="/cards/filter/kind/<%= kind %>" class="list-group-item list-group-item-action"><%= kind.capitalize %></a>
-    <% end %>
-  </div>
-  </br>
-  <div class="list-group">
-    <p>Cards by Type</p>
-    <% ZombieBattleground::Api.card_types.each do |type| %>
-    <a href="/cards/filter/type/<%= type %>" class="list-group-item list-group-item-action"><%= type.capitalize %></a>
-    <% end %>
-  </div>
-  </br>
-  <div class="list-group">
-    <p>Cards by Rank</p>
-    <% ZombieBattleground::Api.card_ranks.each do |rank| %>
-    <a href="/cards/filter/rank/<%= rank %>" class="list-group-item list-group-item-action"><%= rank.capitalize %></a>
-    <% end %>
-  </div>
+</br>
+<div class="list-group">
+  <p>All Cards</p>
+  <a href="/cards/filter/all" class="list-group-item list-group-item-action">All</a>
+</div>
+</br>
+<div class="list-group">
+  <p>Cards by Set</p>
+  <% ZombieBattleground::Api.card_sets.each do |set| %>
+  <a href="/cards/filter/set/<%= set %>" class="list-group-item list-group-item-action"><%= set.capitalize %></a>
+  <% end %>
+</div>
+</br>
+<div class="list-group">
+  <p>Cards by Kind</p>
+  <% ZombieBattleground::Api.card_kinds.each do |kind| %>
+  <a href="/cards/filter/kind/<%= kind %>" class="list-group-item list-group-item-action"><%= kind.capitalize %></a>
+  <% end %>
+</div>
+</br>
+<div class="list-group">
+  <p>Cards by Type</p>
+  <% ZombieBattleground::Api.card_types.each do |type| %>
+  <a href="/cards/filter/type/<%= type %>" class="list-group-item list-group-item-action"><%= type.capitalize %></a>
+  <% end %>
+</div>
+</br>
+<div class="list-group">
+  <p>Cards by Rank</p>
+  <% ZombieBattleground::Api.card_ranks.each do |rank| %>
+  <a href="/cards/filter/rank/<%= rank %>" class="list-group-item list-group-item-action"><%= rank.capitalize %></a>
+  <% end %>
 </div>

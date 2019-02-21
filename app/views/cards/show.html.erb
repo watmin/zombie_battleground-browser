@@ -1,62 +1,69 @@
-<div class="container">
-  <div class="text-center">
-    <img src="<%= @card.image_url %>" class="img-fluid">
-  </div>
+<script>
+  $(document).ready(function() {
+    // hover over flavor text
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+  });
+</script>
 
-  <h3 class="text-center">API Details</h3>
-
-  <table class="table">
-    <tr>
-      <th>ID</th>
-      <td><%= @card.id %></td>
-    </tr>
-    <tr>
-      <th>Mould ID</th>
-      <td><%= @card.mould_id %></td>
-    </tr>
-    <tr>
-      <th>Version</th>
-      <td><%= @card.version %></td>
-    </tr>
-    <tr>
-      <th>Set</th>
-      <td><%= @card.set %></td>
-    </tr>
-    <tr>
-      <th>Name</th>
-      <td><%= @card.name %></td>
-    </tr>
-    <tr>
-      <th>Description</th>
-      <td><%= @card.description %></td>
-    </tr>
-    <tr>
-      <th>Flavor Text</th>
-      <td><%= @card.flavor_text %></td>
-    </tr>
-    <tr>
-      <th>Rank</th>
-      <td><%= @card.rank %></td>
-    </tr>
-    <tr>
-      <th>Type</th>
-      <td><%= @card.type %></td>
-    </tr>
-    <tr>
-      <th>Damage</th>
-      <td><%= @card.damage %></td>
-    </tr>
-    <tr>
-      <th>Health</th>
-      <td><%= @card.health %></td>
-    </tr>
-    <tr>
-      <th>Cost</th>
-      <td><%= @card.cost %></td>
-    </tr>
-    <tr>
-      <th>Ability</th>
-      <td><%= @card.ability %></td>
-    </tr>
-  </table>
+<div class="text-center">
+  <img src="<%= @card.image_url %>" class="img-fluid" data-toggle="tooltip" data-placement="right" title="<%= @card.flavor_text %>"
 </div>
+
+<h3 class="text-center">API Details</h3>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <td><%= @card.id %></td>
+  </tr>
+  <tr>
+    <th>Mould ID</th>
+    <td><%= @card.mould_id %></td>
+  </tr>
+  <tr>
+    <th>Version</th>
+    <td><%= @card.version %></td>
+  </tr>
+  <tr>
+    <th>Set</th>
+    <td><%= @card.set %></td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <td><%= @card.name %></td>
+  </tr>
+  <tr>
+    <th>Description</th>
+    <td><%= @card.description %></td>
+  </tr>
+  <tr>
+    <th>Flavor Text</th>
+    <td><%= @card.flavor_text %></td>
+  </tr>
+  <tr>
+    <th>Rank</th>
+    <td><%= @card.rank %></td>
+  </tr>
+  <tr>
+    <th>Type</th>
+    <td><%= @card.type %></td>
+  </tr>
+  <tr>
+    <th>Damage</th>
+    <td><%= @card.damage %></td>
+  </tr>
+  <tr>
+    <th>Health</th>
+    <td><%= @card.health %></td>
+  </tr>
+  <tr>
+    <th>Cost</th>
+    <td><%= @card.cost %></td>
+  </tr>
+  <tr>
+    <th>Ability</th>
+    <td><%= @card.ability %></td>
+  </tr>
+</table>

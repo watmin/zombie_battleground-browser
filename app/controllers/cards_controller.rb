@@ -9,12 +9,13 @@ class CardsController < ApplicationController
     @filter = params[:filter]
     @criteria = params[:criteria]
 
-    if @filter == 'all'
-      @found = ZombieBattleground::Api.all_cards.to_a
-    else
-      @found = ZombieBattleground::Api.send("cards_by_#{@filter}", @criteria)
-    end
+    @found = if @filter == 'all'
+               ZombieBattleground::Api.all_cards.to_a
+             else
+               ZombieBattleground::Api.send("cards_by_#{@filter}", @criteria)
+             end
 
+    remove_invalid_cards
     render 'cards/search'
   end
 
@@ -38,6 +39,12 @@ class CardsController < ApplicationController
         @found << card
       end
     end
+
+    remove_invalid_cards
+  end
+
+  def remove_invalid_cards
+    @found.reject! { |card| card.mould_id.to_i > 156 }
   end
 
   def nomalize_search_terms
