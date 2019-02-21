@@ -3,28 +3,31 @@
     // make the rows clickable
     $(".clickable-thumbnail").mouseup(function(event) {
       switch(event.which) {
-        case 1: // left mouse
+        case 1: // left mouse - navigate in same window
           window.location = $(this).data("href");
           break;
-        case 2: // middle mouse
+        case 2: // middle mouse - open in new window
           window.open($(this).data("href"));
           break;
-        case 3: // right mouse
+        case 3: // right mouse - open context menu
           break;
       }
     });
 
-    // hover over flavor text
-    $(function () {
-      $('[data-toggle="tooltip"]').tooltip();
-    })
-
-    // make the table sortable
+    // make the search results a DataTable
     $('#searchResults').DataTable({
+      // default sort by mould_id
       order: [[9, 'asc']],
+      // preserve browser location
       stateSave: true,
+      // look decent-ish on mobile
       responsive: true,
-      dom: "<'row'<'col-sm-3'l><'col-sm-3'f><'col-sm-6'p>><'row'<'col-sm-12'tr>><'row'<'col-sm-5'i><'col-sm-7'p>>"
+      // put the page nav bar on top and bottom
+      dom: "<'row'<'col-sm-3'l><'col-sm-3'f><'col-sm-6'p>><'row'<'col-sm-12'tr>><'row'<'col-sm-5'i><'col-sm-7'p>>",
+      // toggle the hover over tooltip on the card images
+      drawCallback: function() {
+        $('[data-toggle="tooltip"]').tooltip();
+      }
     });
   });
 </script>
