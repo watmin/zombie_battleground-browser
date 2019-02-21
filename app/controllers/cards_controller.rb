@@ -1,8 +1,17 @@
 class CardsController < ApplicationController
   def index; end
 
+  def all_cards
+    Rails.cache.fetch('all_cards', expires_in: 12.hours) do
+      ZombieBattleground::Api.all_cards.to_a
+    end
+  end
+
   def show
-    @card = ZombieBattleground::Api.card(mould_id: params[:mould_id], version: params[:version])
+    @card = all_cards.find do |card|
+      card.mould_id == params[:mould_id] &&
+        card.version == params[:version]
+    end
   end
 
   def filter
@@ -10,9 +19,9 @@ class CardsController < ApplicationController
     @criteria = params[:criteria]
 
     @found = if @filter == 'all'
-               ZombieBattleground::Api.all_cards.to_a
+               all_cards
              else
-               ZombieBattleground::Api.send("cards_by_#{@filter}", @criteria)
+               all_cards.select { |card| card.send(@filter) == @criteria }
              end
 
     remove_invalid_cards
@@ -25,7 +34,7 @@ class CardsController < ApplicationController
     @normalized_terms = nomalize_search_terms
     return if @normalized_terms.blank?
 
-    ZombieBattleground::Api.all_cards do |card|
+    all_cards.each do |card|
       @normalized_terms.each do |term|
         next unless card.description.match?(term) ||
                     card.flavor_text.match?(term) ||
@@ -44,6 +53,8 @@ class CardsController < ApplicationController
   end
 
   def remove_invalid_cards
+    return if @found.nil?
+
     @found.reject! { |card| card.mould_id.to_i > 156 }
   end
 
