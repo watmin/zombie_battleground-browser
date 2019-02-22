@@ -1,0 +1,71 @@
+<script>
+  $(document).ready(function() {
+    // install place holder card slots
+    Holder.run({images: $(".card-img-top").toArray()});
+
+    // toggle tooltips on
+    $('[data-toggle="tooltip"]').tooltip();
+  });
+
+  // setup the pop up card image
+  $(function() {
+    $('.modal-pop').on('click', function() {
+      event.preventDefault();
+      mould_id = $(this).find('img').attr('mould_id')
+      version = $(this).find('img').attr('version')
+      $('.card-image-modal').attr('src', $(this).find('img').attr('src'));
+      $('.card-details').attr('href', `/cards/show/${mould_id}/${version}`);
+      $('#card-image-modal').modal('show');
+    });
+  });
+</script>
+
+<%# The #{row}#{column} thing is a total cheese to make coordinates on base10 really easy %>
+<% Array.new(3) do |row| %>
+</br>
+<div id="deck-row-<%= row %>" class="row">
+  <% Array.new(10) do |column| %>
+  <div id="deck-row-<%= row %>-card-<%= column %>" class="col">
+    <div class="card">
+      <% if @cards.nil? %>
+      <img id="card-<%=  "#{row}#{column}".to_i %>" class="card-img-top" data-src="holder.js/200x300?theme=industrial&auto=yes&text=Empty \n Card" src="">
+      <% else %>
+        <% card = @cards["#{row}#{column}".to_i] %>
+        <a href="#" class="modal-pop">
+          <img
+            id="card-<%=  "#{row}#{column}".to_i %>"
+            class="card-img-top"
+            src="<%= card.image_url %>"
+            mould_id="<%= card.mould_id %>"
+            version="<%= card.version %>"
+            data-toggle="tooltip"
+            data-placement="bottom"
+            title="<%= card.name %>"
+          >
+        </a>
+      <% end %>
+    </div>
+  </div>
+  <% end %>
+</div>
+<% end %>
+
+<div class="modal" id="card-image-modal" tabindex="-1" role="dialog" aria-labelledby="card-image-modal-label" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <a href="" class="card-details" target="_blank">
+          <img
+           src=""
+           class="card-image-modal"
+           style="width: 100%;"
+            data-toggle="tooltip"
+            data-placement="top"
+            title="Open Card Details in new tab"
+         >
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

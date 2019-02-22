@@ -1,11 +1,9 @@
-class CardsController < ApplicationController
-  def index; end
+require 'zombie_battleground/browser/cards'
 
-  def all_cards
-    Rails.cache.fetch('all_cards', expires_in: 12.hours) do
-      ZombieBattleground::Api.all_cards.to_a
-    end
-  end
+class CardsController < ApplicationController
+  include ZombieBattleground::Browser::Cards
+
+  def index; end
 
   def show
     @card = all_cards.find do |card|
@@ -24,7 +22,6 @@ class CardsController < ApplicationController
                all_cards.select { |card| card.send(@filter) == @criteria }
              end
 
-    remove_invalid_cards
     render 'cards/search'
   end
 
@@ -48,14 +45,6 @@ class CardsController < ApplicationController
         @found << card
       end
     end
-
-    remove_invalid_cards
-  end
-
-  def remove_invalid_cards
-    return if @found.nil?
-
-    @found.reject! { |card| card.mould_id.to_i > 156 }
   end
 
   def nomalize_search_terms

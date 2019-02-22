@@ -9,6 +9,9 @@ Rails.application.routes.draw do
   get '/cards/show/:mould_id/:version', to: 'cards#show'
 
   # Decks
+  get '/decks', to: 'decks#index'
+  get '/decks/builder', to: 'decks#builder'
+  get '/decks/builder/from/:id', to: 'decks#builder_from_deck_id'
 
   # Matches
 end
