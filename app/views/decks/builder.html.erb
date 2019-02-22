@@ -79,6 +79,63 @@
   <% end %>
 </div>
 
+<% unless @deck.nil? %>
+<h2>Work in progress</h2>
+
+<p>I want to have a copy to new functionality and have an existing deck view similar to the
+deck builder</p>
+
+<h3 class="text-center">API Details for Deck <%= @deck.id %></h3>
+
+<p>I haven't figured out how to determine what overload is being used or what the
+stregth and weaknesses are... so here's dump of the repsonse data.
+<a href="https://zombiebattleground.io/index.php/Overlord" target="_blank">Wiki details for overlords</a>
+</p>
+
+<table class="table">
+  <tr>
+    <th>Deck ID (not to be confused with just 'ID')</th>
+    <td><%= @deck.id %>
+  </tr>
+  <tr>
+    <th>Hero ID (I think this the overlord?..)</th>
+    <td><%= @deck.hero_id %></td>
+  </tr>
+  <tr>
+    <th>ID (the param used to query deck details)</th>
+    <td><%= @deck.id %></td>
+  </tr>
+  <tr>
+    <th>Name</th>
+    <td><%= @deck.name %></td>
+  </tr>
+  <tr>
+    <th>Primary Skill ID (I think this the overlord strength)</th>
+    <td><%= @deck.primary_skill_id %></td>
+  </tr>
+  <tr>
+    <th>Secondary Skill ID (and this is the overload weakness)</th>
+    <td><%= @deck.secondary_skill_id %></td>
+  </tr>
+  <tr>
+    <th>Sender Address</th>
+    <td><%= @deck.sender_address %></td>
+  </tr>
+  <tr>
+    <th>Updated at</th>
+    <td><%= @deck.updated_at %></td>
+  </tr>
+  <tr>
+    <th>User ID</th>
+    <td><%= @deck.user_id %></td>
+  </tr>
+  <tr>
+    <th>Version</th>
+    <td><%= @deck.version %></td>
+  </tr>
+</table>
+<% end %>
+
 <div class="modal" id="card-image-modal" tabindex="-1" role="dialog" aria-labelledby="card-image-modal-label" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">

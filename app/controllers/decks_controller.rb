@@ -10,8 +10,8 @@ class DecksController < ApplicationController
   def builder_from_deck_id
     @cards = []
 
-    deck = ZombieBattleground::Api.deck(id: params[:id].to_i)
-    deck.cards.each do |simple_card|
+    @deck = ZombieBattleground::Api.deck(id: params[:id].to_i)
+    @deck.cards.each do |simple_card|
       Array.new(simple_card.amount) do
         @cards << all_cards.find { |card| card.name == simple_card.card_name }
       end
