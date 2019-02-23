@@ -22,33 +22,48 @@
 
 <style>
 @media (min-width: 300px) {
-    .card-columns {
-        column-count: 3;
-    }
+  .card-columns {
+    column-count: 3;
+  }
+  .modal-dialog {
+    width: 340px;
+  }
 }
 
 @media (min-width: 576px) {
-    .card-columns {
-        column-count: 4;
-    }
+  .card-columns {
+    column-count: 4;
+  }
+  .modal-dialog {
+    width: 500px;
+  }
 }
 
 @media (min-width: 768px) {
-    .card-columns {
-        column-count: 5;
-    }
+  .card-columns {
+    column-count: 5;
+  }
+  .modal-dialog {
+    width: 500px;
+  }
 }
 
 @media (min-width: 992px) {
-    .card-columns {
-        column-count: 6;
-    }
+  .card-columns {
+    column-count: 6;
+  }
+  .modal-dialog {
+    width: 500px;
+  }
 }
 
 @media (min-width: 1200px) {
-    .card-columns {
-        column-count: 10;
-    }
+  .card-columns {
+    column-count: 10;
+  }
+  .modal-dialog {
+    width: 500px;
+  }
 }
 </style>
 
@@ -137,7 +152,7 @@ stregth and weaknesses are... so here's dump of the repsonse data.
 <% end %>
 
 <div class="modal" id="card-image-modal" tabindex="-1" role="dialog" aria-labelledby="card-image-modal-label" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
