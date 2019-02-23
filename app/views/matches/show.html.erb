@@ -1,0 +1,65 @@
+<script>
+  $(document).ready(function() {
+    // hover over flavor text
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+  });
+</script>
+
+</br>
+<h3 class="text-center">Match Details</h3>
+
+<table class="table">
+  <tr>
+    <th>ID</th>
+    <td><%= @match.id %></td>
+  </tr>
+  <tr>
+    <th>Status</th>
+    <td><%= @match.status %></td>
+  </tr>
+  <tr>
+    <th>Created</th>
+    <td><%= @match.created_at %></td>
+  </tr>
+    <th>Updated</th>
+    <td><%= @match.updated_at %></td>
+  </tr>
+  <tr>
+    <th>Version</th>
+    <td><%= @match.version %></td>
+  </tr>
+  <tr>
+    <th>Winner</th>
+    <td><%= @match.winner_id %></td>
+  </tr>
+  <tr>
+    <th>Player 1 Accepted</th>
+    <td><%= @match.player1_accepted %></td>
+  </tr>
+  <tr>
+    <th>Player 1 Deck</th>
+    <td><a href="/decks/show/player/<%= @match.player1_id %>/deck/<%= @match.player1_deck_id%>">Load in Deck Viewer</a></td>
+  </tr>
+  <tr>
+    <th>Player 1 User ID</th>
+    <td><%= @match.player1_id %></td>
+  </tr>
+  <tr>
+    <th>Player 2 Accepted</th>
+    <td><%= @match.player2_accepted %></td>
+  </tr>
+  <tr>
+    <th>Player 2 Deck</th>
+    <td><a href="/decks/show/player/<%= @match.player2_id %>/deck/<%= @match.player2_deck_id%>">Load in Deck Viewer</a></td>
+  </tr>
+  <tr>
+    <th>Player 2 User ID</th>
+    <td><%= @match.player2_id %></td>
+  </tr>
+  <tr>
+    <th>Match Seed</th>
+    <td><%= @match.random_seed %></td>
+  </tr>
+</table>

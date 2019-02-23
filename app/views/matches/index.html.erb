@@ -1,0 +1,114 @@
+<script>
+  $(document).ready(function(){
+    $('.recent-matches').slick({
+      dots: false,
+      arrows: false,
+      infinite: true,
+      autoplay: true,
+      autoplaySpeed: 2000,
+      speed: 300,
+      slidesToShow: 3,
+      slidesToScroll: 1,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 1,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+    });
+  });
+</script>
+
+<h1>Very much work in progress <small class="text-muted">Not overy happy with the carousel approach</small></h1>
+<p class="lead">Maybe just a card column view, something like pintrest? I also really want an image or something, this is pretty boring to glance at</p>
+
+</br>
+<p class="lead">Recently Created Matches <small class="text-muted">Drag to scroll</small></p>
+<div class="recent-matches">
+<% @created.each do |match| %>
+  <%
+  unless match.winner_id.blank?
+    winner = match.winner_id == match.player1_id ? '1' : '2'
+    winning_deck = match.send("player#{winner}_deck_id")
+  end
+  %>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Match ID <%= match.id %></h5>
+      <p class=card-text">Status: <%= match.status %></p>
+      <p class=card-text">Created at: <%= match.created_at %></p>
+      <p class=card-text">Updated at: <%= match.updated_at %></p>
+      <a href="/matches/show/<%= match.id %>" class="btn btn-primary">Match Details</a>
+      <% unless winning_deck.nil? %>
+      <a href="/decks/show/player/<%= match.winner_id %>/deck/<%= winning_deck %>" class="btn btn-primary">Winning Deck</a>
+    <% end %>
+    </div>
+  </div>
+<% end %>
+</div>
+
+</br>
+<p class="lead">Recently Updated Matches <small class="text-muted">Drag to scroll</small></p>
+<div class="recent-matches">
+<% @updated.each do |match| %>
+  <%
+  unless match.winner_id.blank?
+    winner = match.winner_id == match.player1_id ? '1' : '2'
+    winning_deck = match.send("player#{winner}_deck_id")
+  end
+  %>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Match ID <%= match.id %></h5>
+      <p class=card-text">Status: <%= match.status %></p>
+      <p class=card-text">Created at: <%= match.created_at %></p>
+      <p class=card-text">Updated at: <%= match.updated_at %></p>
+      <a href="/matches/show/<%= match.id %>" class="btn btn-primary">Match Details</a>
+      <% unless winning_deck.nil? %>
+      <a href="/decks/show/player/<%= match.winner_id %>/deck/<%= winning_deck %>" class="btn btn-primary">Winning Deck</a>
+    <% end %>
+    </div>
+  </div>
+<% end %>
+</div>
+
+</br>
+<p class="lead">Recently Ended Matches <small class="text-muted">Drag to scroll</small></p>
+<div class="recent-matches">
+<% @ended.each do |match| %>
+  <%
+  unless match.winner_id.blank?
+    winner = match.winner_id == match.player1_id ? '1' : '2'
+    winning_deck = match.send("player#{winner}_deck_id")
+  end
+  %>
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Match ID <%= match.id %></h5>
+      <p class=card-text">Status: <%= match.status %></p>
+      <p class=card-text">Created at: <%= match.created_at %></p>
+      <p class=card-text">Updated at: <%= match.updated_at %></p>
+      <% if match.status == 'Playing' %>
+      <a href="/matches/show/<%= match.id %>" class="btn btn-primary disabled" disabled>In Progress</a>
+      <% else %>
+      <a href="/matches/show/<%= match.id %>" class="btn btn-primary">Match Details</a>
+    <% end %>
+      <% unless winning_deck.nil? %>
+      <a href="/decks/show/player/<%= match.winner_id %>/deck/<%= winning_deck %>" class="btn btn-primary">Winning Deck</a>
+    <% end %>
+    </div>
+  </div>
+<% end %>
+</div>

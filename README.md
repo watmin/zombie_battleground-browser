@@ -10,3 +10,9 @@ This is definitely not done, functional components:
 * Searching cards
 * Viewing cards
 * Cards page
+* Deck page
+* Loding deck cards
+* Viewing recent matches
+* View match details
+* Loading decks from match details
+* Loading winner's deck from match preview

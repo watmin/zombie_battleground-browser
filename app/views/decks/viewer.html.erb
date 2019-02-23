@@ -70,6 +70,13 @@
 
 <a href="/decks/builder/from/<%= @deck.id %>"><h3 class="text-center">Load in Deck Builder</h3></a>
 
+</br>
+<h5 class="text-center">To do: Make this more presentable... (and figure out how to translate abilities)</h5>
+</br>
+<p class="text-center">Deck Faction: <%= @deck_faction %></p>
+<p class="text-center">Hero Ability Primary: <%= @deck.primary_skill_id %></p>
+<p class="text-center">Hero Ability Secondary: <%= @deck.secondary_skill_id %></p>
+
 <div class="card-columns">
   <% Array.new(30) do |card_place| %>
   <% card = @cards[card_place] %>
