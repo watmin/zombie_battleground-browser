@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/decks', to: 'decks#index'
   get '/decks/builder', to: 'decks#builder'
   get '/decks/builder/from/:id', to: 'decks#builder_from_deck_id'
+  get '/decks/show/:id', to: 'decks#show'
 
   # Matches
 end
