@@ -41,12 +41,15 @@ module ZombieBattleground
         @matches_count = response.total
 
         response.matches.each do |match|
-          present = ZombieBattleground::Browser::MatchesBuffer.instance.find do |buffered|
+          index = ZombieBattleground::Browser::MatchesBuffer.instance.find_index do |buffered|
             buffered.id == match.id
           end
 
-          next unless present.nil?
-          ZombieBattleground::Browser::MatchesBuffer.instance.insert(match)
+          if index.nil?
+            ZombieBattleground::Browser::MatchesBuffer.instance.insert(match)
+          else
+            ZombieBattleground::Browser::MatchesBuffer.instance[index] = match
+          end
         end
       end
     end
