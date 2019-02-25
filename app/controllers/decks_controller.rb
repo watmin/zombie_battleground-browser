@@ -7,6 +7,10 @@ class DecksController < ApplicationController
 
   def index; end
 
+  def fetch_all_cards
+    @all_cards = all_cards
+  end
+
   def show
     @cards = []
 
@@ -41,7 +45,10 @@ class DecksController < ApplicationController
     render 'decks/viewer'
   end
 
-  def builder; end
+  before_action :fetch_all_cards, only: [:builder, :builder_from_deck_id]
+  def builder
+    render 'decks/builder'
+  end
 
   def builder_from_deck_id
     @cards = []

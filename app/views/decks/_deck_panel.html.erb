@@ -1,5 +1,7 @@
-
 <script>
+  // These conditions need to be broken out into methods with sane line counts and
+  // branching logic. Definitely not done
+
   $(document).ready(function() {
     // toggle tooltips on
     if (!("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch)) {
@@ -9,15 +11,40 @@
 
   // setup the pop up card image
   $(function() {
-    $('.modal-pop').on('click', function() {
+    $('.modal-pop').on('click', function(event) {
       event.preventDefault();
       mould_id = $(this).find('img').attr('card-mould_id');
       version = $(this).find('img').attr('card-version');
       name = $(this).find('img').attr('card-name');
       $('.card-image-modal').attr('src', $(this).find('img').attr('src'));
       $('.card-details').attr('href', `/cards/show/${mould_id}/${version}`);
-      $('.card-name').text(name);
       $('#card-image-modal').modal('show');
+
+      if (window.location.pathname.startsWith('/decks/builder')) {
+        console.log(event.target.id);
+        if (event.target.id.startsWith('card-')) {
+          document.getElementById('add-card').style.display = 'none';
+          document.getElementById('remove-card').style.display = '';
+        } else {
+          document.getElementById('add-card').style.display = '';
+          document.getElementById('remove-card').style.display = 'none';
+        }
+      } else {
+        document.getElementById('add-card').style.display = 'none';
+        document.getElementById('remove-card').style.display = 'none';
+      }
+
+      if (name == 'undefined') {
+        $('.card-details').prop('disabled', true);
+        $('.card-details').addClass('disabled');
+        $('.card-name').text('Add a new card below');
+        document.getElementById('add-card').style.display = 'none';
+        document.getElementById('remove-card').style.display = 'none';
+      } else {
+        $('.card-details').prop('disabled', false);
+        $('.card-details').removeClass('disabled');
+        $('.card-name').text(name);
+      }
     });
   });
 </script>
@@ -119,6 +146,22 @@
 
 <div class="row">
   <% Array.new(30) do |card_place| %>
+  <% if @cards.nil? %>
+  <div class="col-1dot2 py-2">
+    <div class="card">
+      <a href="#" class="modal-pop">
+        <img
+          id="card-<%= card_place %>"
+          class="card-img-top zbg-card-image"
+          src="<%= image_url("empty-card.svg") %>"
+          data-toggle="tooltip"
+          data-placement="bottom"
+          title="Add a card below"
+        >
+      </a>
+    </div>
+  </div>
+  <% else %>
   <% card = @cards[card_place] %>
   <div class="col-1dot2 py-2">
     <div class="card">
@@ -139,11 +182,17 @@
     </div>
   </div>
   <% end %>
+  <% end %>
 </div>
 
 <div class="modal" id="card-image-modal" tabindex="-1" role="dialog" aria-labelledby="card-image-modal-label" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
+      <div class="modal-header">
+        <p class="lead card-name mr-auto"></p>
+        <button id="remove-card" class="btn btn-danger btn-sm">Remove</button>
+        <button id="add-card" class="btn btn-info btn-sm">Add</button>
+      </div>
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
         <img
@@ -153,7 +202,6 @@
         >
       </div>
       <div class="modal-footer">
-        <p class="lead card-name mr-auto">Name</p>
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <a href="" class="card-details btn btn-primary" target="_blank">Card Details</a>
       </div>

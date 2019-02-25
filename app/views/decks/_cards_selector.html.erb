@@ -1,0 +1,72 @@
+<script>
+  $(document).ready(function() {
+    // make the search results a DataTable
+    $('#all_cards').DataTable({
+      // default sort by mould_id
+      order: [[9, 'asc']],
+      // preserve browser location
+      stateSave: true,
+      // look decent-ish on mobile
+      responsive: true,
+      drawCallback: function() {
+        if (!("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch)) {
+          $('[data-toggle="tooltip"]').tooltip();
+        }
+      }
+    });
+  });
+</script>
+
+<p class="lead"><small class="text-muted">To do: </small>Hero/Faction chooser here, which restricts cards</p>
+
+<p class="lead"><small class="text-muted">To do: </small>I want to add several checkboxes for fast filtering here</p>
+
+</br>
+<table id="all_cards" class="table table-striped table-hover table-responsive dt-responsive display nowrap">
+  <thead>
+    <tr>
+      <th>View</th>
+      <th>Name</th>
+      <th>Set</th>
+      <th>Kind</th>
+      <th>Type</th>
+      <th>Rank</th>
+      <th>Cost</th>
+      <th>Health</th>
+      <th>Damage</th>
+      <th>Mould ID</th>
+      <th>Version</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @all_cards.each do |card| %>
+  <tr>
+    <td>
+      <a href="#" class="modal-pop">
+        <img
+          class="img-thumbnail"
+          src="<%= card.image_url %>"
+          card-mould_id="<%= card.mould_id %>"
+          card-version="<%= card.version %>"
+          card-name="<%= card.name %>"
+          data-toggle="tooltip"
+          data-placement="bottom"
+          title="<%= card.name %>"
+          onerror="this.src='<%= image_url("missing-card.svg") %>';"
+        >
+      </a>
+    </td>
+    <td><%= card.name %></td>
+    <td><%= card.set %></td>
+    <td><%= card.kind %></td>
+    <td><%= card.type %></td>
+    <td><%= card.rank %></td>
+    <td><%= card.cost %></td>
+    <td><%= card.health %></td>
+    <td><%= card.damage %></td>
+    <td><%= card.mould_id %></td>
+    <td><%= card.version %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
