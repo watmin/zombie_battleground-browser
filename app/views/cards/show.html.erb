@@ -16,7 +16,7 @@
     data-toggle="tooltip"
     data-placement="right"
     title="<%= @card.flavor_text %>"
-    onerror="this.src='/assets/missing-card.svg';"
+    onerror="this.src='<%= image_url("missing-card.svg") %>';"
   >
 </div>
 

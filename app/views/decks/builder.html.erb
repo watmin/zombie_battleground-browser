@@ -75,7 +75,7 @@
   <% Array.new(30) do |card_place| %>
   <div class="card">
     <% if @cards.nil? %>
-    <img id="card-<%= card_place %>" class="card-img-top" src="/assets/missing-card.svg">
+    <img id="card-<%= card_place %>" class="card-img-top" src="<%= image_url("missing-card.svg") %>">
     <% else %>
     <% card = @cards[card_place] %>
     <a href="#" class="modal-pop">
@@ -89,7 +89,7 @@
         data-toggle="tooltip"
         data-placement="bottom"
         title="<%= card.name %>"
-        onerror="this.src='/assets/missing-card.svg';"
+        onerror="this.src='<%= image_url("missing-card.svg") %>';"
       >
     </a>
     <% end %>

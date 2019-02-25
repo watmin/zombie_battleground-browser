@@ -72,7 +72,7 @@
         data-toggle="tooltip"
         data-placement="right"
         title="<%= found.flavor_text %>"
-        onerror="this.src='/assets/missing-card.svg';"
+        onerror="this.src='<%= image_url("missing-card.svg") %>';"
       >
     </td>
     <td><%= found.name %></td>
