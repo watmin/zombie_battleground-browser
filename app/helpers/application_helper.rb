@@ -11,4 +11,8 @@ module ApplicationHelper
     when 'dark' then 'alert alert-dark'
     end
   end
+
+  def hero_faction(hero_id)
+    ZombieBattleground::Api.deck_faction(hero_id)
+  end
 end

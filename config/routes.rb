@@ -18,4 +18,7 @@ Rails.application.routes.draw do
   # Matches
   get '/matches', to: 'matches#index'
   get '/matches/show/:match_id', to: 'matches#show'
+
+  # Player
+  get '/player/:player_id', to: 'player#index'
 end

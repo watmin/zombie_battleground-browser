@@ -1,6 +1,6 @@
 </br>
 <h2 class="text-center">"<%= @deck.name %>" - Deck ID <%= @deck.id %></h2>
-<h4 class="text-center"> - <%= @deck.user_id %></h2>
+<h4 class="text-center"> - <a href="/player/<%= @deck.user_id %>"><%= @deck.user_id %></a></h2>
 
 <a href="/decks/builder/from/<%= @deck.id %>"><h3 class="text-center">Load in Deck Builder</h3></a>
 

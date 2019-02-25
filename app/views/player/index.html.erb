@@ -1,0 +1,91 @@
+<script>
+  $(document).ready(function() {
+    // make the search results a DataTable
+    $('#playerDecks').DataTable({
+      // default sort by name
+      order: [[2, 'asc']],
+      // preserve browser location
+      stateSave: true,
+      // look decent-ish on mobile
+      responsive: true,
+    });
+
+    // make the search results a DataTable
+    $('#playerMatches').DataTable({
+      // default sort by name
+      order: [[2, 'asc']],
+      // preserve browser location
+      stateSave: true,
+      // look decent-ish on mobile
+      responsive: true,
+    });
+  });
+</script>
+
+</br>
+<h1 class="text-center"><%= @player_id %></h1>
+<p class="lead"><small class="text-muted">NOTE: </small>This view is pretty rough right now, just wanted to implement better navigation quickly</p>
+<p>I don't know what's up with the table looking screwy with responsive enabled</p>
+
+</br>
+<h3>Decks</h3>
+<table id="playerDecks" class="table table-striped table-hover table-responsive dt-responsive display nowrap" data-turbolinks="false">
+  <thead>
+    <tr>
+      <th>View</th>
+      <td>Deck ID</th>
+      <th>Name</th>
+      <th>Faction</th>
+      <th>Primary Skill</th>
+      <th>Secondary Skill</th>
+      <th>ID</th>
+      <th>Created</th>
+      <th>Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @decks.each do |deck| %>
+  <tr>
+    <td><a href="/decks/show/<%= deck.id %>">View</a></td>
+    <td><%= deck.deck_id %></td>
+    <td><%= deck.name %></td>
+    <td><%= hero_faction(deck.hero_id) %></td>
+    <td><%= deck.primary_skill_id %></td>
+    <td><%= deck.secondary_skill_id %></td>
+    <td><%= deck.id %></td>
+    <td><%= deck.created_at %></td>
+    <td><%= deck.updated_at %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
+
+</br>
+<h3>Matches</h3>
+<table id="playerMatches" class="table table-striped table-hover table-responsive dt-responsive display nowrap" data-turbolinks="false">
+  <thead>
+    <tr>
+      <th>View</th>
+      <th>ID</th>
+      <th>Deck</th>
+      <th>Winner</th>
+      <th>Status</th>
+      <th>Created</th>
+      <th>Updated</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @matches.each do |match| %>
+  <% player = match.player1_id == @player_id ? '1' : '2' %>
+  <tr>
+    <td><a href="/matches/show/<%= match.id %>">View</a></td>
+    <td><%= match.id %>
+    <td><%= match.send("player#{player}_deck_id") %></td>
+    <td><%= match.winner_id == @player_id %></td>
+    <td><%= match.status %></td>
+    <td><%= match.created_at %></td>
+    <td><%= match.updated_at %></td>
+  </tr>
+  <% end %>
+  </tbody>
+</table>
