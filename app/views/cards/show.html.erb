@@ -7,9 +7,20 @@
   });
 </script>
 
+</br>
+
 <div class="text-center">
-  <img src="<%= @card.image_url %>" class="img-fluid" data-toggle="tooltip" data-placement="right" title="<%= @card.flavor_text %>"
+  <img
+    src="<%= @card.image_url %>"
+    class="img-fluid"
+    data-toggle="tooltip"
+    data-placement="right"
+    title="<%= @card.flavor_text %>"
+    onerror="this.src='/assets/missing-card.svg';"
+  >
 </div>
+
+</br>
 
 <h3 class="text-center">API Details</h3>
 

@@ -1,17 +1,21 @@
 <script>
   $(document).ready(function() {
     // toggle tooltips on
-    $('[data-toggle="tooltip"]').tooltip();
+    if (!("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch)) {
+      $('[data-toggle="tooltip"]').tooltip();
+    }
   });
 
   // setup the pop up card image
   $(function() {
     $('.modal-pop').on('click', function() {
       event.preventDefault();
-      mould_id = $(this).find('img').attr('mould_id')
-      version = $(this).find('img').attr('version')
+      mould_id = $(this).find('img').attr('card-mould_id');
+      version = $(this).find('img').attr('card-version');
+      name = $(this).find('img').attr('card-name');
       $('.card-image-modal').attr('src', $(this).find('img').attr('src'));
       $('.card-details').attr('href', `/cards/show/${mould_id}/${version}`);
+      $('.card-name').text(name);
       $('#card-image-modal').modal('show');
     });
   });
@@ -84,13 +88,15 @@
     <a href="#" class="modal-pop">
       <img
         id="card-<%= card_place %>"
-        class="card-img-top"
+        class="card-img-top zbg-card-image"
         src="<%= card.image_url %>"
-        mould_id="<%= card.mould_id %>"
-        version="<%= card.version %>"
+        card-mould_id="<%= card.mould_id %>"
+        card-version="<%= card.version %>"
+        card-name="<%= card.name %>"
         data-toggle="tooltip"
         data-placement="bottom"
         title="<%= card.name %>"
+        onerror="this.src='/assets/missing-card.svg';"
       >
     </a>
   </div>
@@ -102,16 +108,16 @@
     <div class="modal-content">
       <div class="modal-body">
         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-        <a href="" class="card-details" target="_blank">
-          <img
-            src=""
-            class="card-image-modal"
-            style="width: 100%;"
-            data-toggle="tooltip"
-            data-placement="top"
-            title="Open Card Details in new tab"
-          >
-        </a>
+        <img
+          src=""
+          class="card-image-modal"
+          style="width: 100%;"
+        >
+      </div>
+      <div class="modal-footer">
+        <p class="lead card-name mr-auto">Name</p>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="" class="card-details btn btn-primary" target="_blank">Card Details</a>
       </div>
     </div>
   </div>

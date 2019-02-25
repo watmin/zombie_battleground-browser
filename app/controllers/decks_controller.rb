@@ -25,6 +25,12 @@ class DecksController < ApplicationController
     @cards = []
 
     @deck = ZombieBattleground::Api.decks(user_id: params[:user_id], deck_id: params[:deck_id].to_i).first
+    if (@deck.nil?)
+      flash[:warning] = "Deck #{params[:deck_id]} not found for #{params[:user_id]}"
+      redirect_to(matches_path)
+      return
+    end
+
     @deck_faction = ZombieBattleground::Api.deck_faction(@deck.hero_id)
     @deck.cards.each do |simple_card|
       Array.new(simple_card.amount) do

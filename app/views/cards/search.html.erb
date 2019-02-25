@@ -26,7 +26,9 @@
       dom: "<'row'<'col-sm-3'l><'col-sm-3'f><'col-sm-6'p>><'row'<'col-sm-12'tr>><'row'<'col-sm-5'i><'col-sm-7'p>>",
       // toggle the hover over tooltip on the card images
       drawCallback: function() {
-        $('[data-toggle="tooltip"]').tooltip();
+        if (!("ontouchstart" in window || window.DocumentTouch && document instanceof DocumentTouch)) {
+          $('[data-toggle="tooltip"]').tooltip();
+        }
       }
     });
   });
@@ -70,6 +72,7 @@
         data-toggle="tooltip"
         data-placement="right"
         title="<%= found.flavor_text %>"
+        onerror="this.src='/assets/missing-card.svg';"
       >
     </td>
     <td><%= found.name %></td>

@@ -58,8 +58,8 @@ SecureHeaders::Configuration.default do |config|
     manifest_src: %w('self'),
     object_src: %w('self'),
     sandbox: %w(allow-scripts allow-forms allow-same-origin allow-popups),
-    script_src: %w('self' 'unsafe-inline' cdn.datatables.net cdnjs.cloudflare.com cdn.jsdelivr.net),
-    style_src: %w('self' 'unsafe-inline' stackpath.bootstrapcdn.com cdn.datatables.net fonts.googleapis.com cdn.jsdelivr.net),
+    script_src: %w('self' 'unsafe-inline' cdn.datatables.net),
+    style_src: %w('self' 'unsafe-inline' stackpath.bootstrapcdn.com cdn.datatables.net fonts.googleapis.com),
     worker_src: %w('self'),
     upgrade_insecure_requests: true, # see https://www.w3.org/TR/upgrade-insecure-requests/
   }
