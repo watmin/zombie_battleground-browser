@@ -27,6 +27,11 @@ module ZombieBattleground
           end
 
           sleep 60 # check for updates once a minute
+        rescue StandardError => e
+          Rails.logger.error("Failed to fetch match data: #{e.class} #{e.message}")
+          e.backtrace.messages.each { |message| Rails.logger.warn("\t#{message}") }
+          sleep 60
+          retry
         end
       end
 

@@ -22,46 +22,92 @@
 </script>
 
 <style>
+.col-1dot2,
+.col-sm-1dot2,
+.col-md-1dot2,
+.col-lg-1dot2,
+.col-xl-1dot2 {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-1dot2 {
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 10%;
+  flex: 0 0 10%;
+  max-width: 10%;
+}
+
 @media (min-width: 300px) {
-  .card-columns {
-    column-count: 3;
-  }
   .modal-dialog {
-    width: 340px;
+    width: 95%;
+    height: 92%;
+    padding: 0;
+  }
+
+  .modal-content {
+    height: 99%;
+    max-height: 700px;
+  }
+
+  .col-1dot2 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 33%;
+    flex: 0 0 33%;
+    max-width: 33%;
   }
 }
 
 @media (min-width: 576px) {
-  .card-columns {
-    column-count: 4;
+  .col-1dot2 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 25%;
+    flex: 0 0 25%;
+    max-width: 25%;
   }
+
   .modal-dialog {
     width: 500px;
   }
 }
 
 @media (min-width: 768px) {
-  .card-columns {
-    column-count: 5;
+  .col-1dot2 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 20%;
+    flex: 0 0 20%;
+    max-width: 20%;
   }
+
   .modal-dialog {
     width: 500px;
   }
 }
 
 @media (min-width: 992px) {
-  .card-columns {
-    column-count: 6;
+  .col-1dot2 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 16%;
+    flex: 0 0 16%;
+    max-width: 16%;
   }
+
   .modal-dialog {
     width: 500px;
   }
 }
 
 @media (min-width: 1200px) {
-  .card-columns {
-    column-count: 10;
+  .col-1dot2 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 10%;
+    flex: 0 0 10%;
+    max-width: 10%;
   }
+
   .modal-dialog {
     width: 500px;
   }
@@ -71,28 +117,30 @@
 </br>
 <h2 class="text-center">Deck Builder</h2>
 
-<div class="card-columns">
+<div class="row">
   <% Array.new(30) do |card_place| %>
-  <div class="card">
-    <% if @cards.nil? %>
-    <img id="card-<%= card_place %>" class="card-img-top" src="<%= image_url("missing-card.svg") %>">
-    <% else %>
-    <% card = @cards[card_place] %>
-    <a href="#" class="modal-pop">
-      <img
-        id="card-<%= card_place %>"
-        class="card-img-top zbg-card-image"
-        src="<%= card.image_url %>"
-        card-mould_id="<%= card.mould_id %>"
-        card-version="<%= card.version %>"
-        card-name="<%= card.name %>"
-        data-toggle="tooltip"
-        data-placement="bottom"
-        title="<%= card.name %>"
-        onerror="this.src='<%= image_url("missing-card.svg") %>';"
-      >
-    </a>
-    <% end %>
+  <div class="col-1dot2 py-2">
+    <div class="card">
+      <% if @cards.nil? %>
+      <img id="card-<%= card_place %>" class="card-img-top" src="<%= image_url("empty-card.svg") %>">
+      <% else %>
+      <% card = @cards[card_place] %>
+      <a href="#" class="modal-pop">
+        <img
+          id="card-<%= card_place %>"
+          class="card-img-top zbg-card-image"
+          src="<%= card.image_url %>"
+          card-mould_id="<%= card.mould_id %>"
+          card-version="<%= card.version %>"
+          card-name="<%= card.name %>"
+          data-toggle="tooltip"
+          data-placement="bottom"
+          title="<%= card.name %>"
+          onerror="this.src='<%= image_url("missing-card.svg") %>';"
+        >
+      </a>
+      <% end %>
+    </div>
   </div>
   <% end %>
 </div>
