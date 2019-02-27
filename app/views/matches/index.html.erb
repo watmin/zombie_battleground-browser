@@ -12,13 +12,13 @@
 <h1 class="text-center">Recent Matches</h1>
 <div class="row">
 <% @matches.each do |match| %>
-  <div class="col-sm-6 col-md-3 py-2">
+  <div class="col-sm-6 col-md-4 py-2">
     <div class="card">
       <div class="card card-body h-100">
         <h5 class="card-title">Match ID <%= match.id %></h5>
         <p class="card-text">Status: <%= match.status %></p>
         <p class="card-text">Updated: <time class="timeago" datetime="<%= match.updated_at.iso8601 %>"></p>
-        <% if match.status == 'Playing' %>
+        <% if %[Started Playing].include?(match.status) %>
         <span data-toggle="tooltip" title="Match in progess">
         <a href="/matches/show/<%= match.id %>" class="btn btn-primary disabled w-100" disabled>Match Details</a>
         </span>
@@ -32,8 +32,8 @@
         </div>
         <p>
         <div class="btn-toolbar justify-content-between">
-          <a href="/decks/show/player/<%= match.player1_id %>/deck/<%= match.player1_deck_id %>" class="btn btn-sm btn-primary">Player 1 Deck</a>
-          <a href="/decks/show/player/<%= match.player2_id %>/deck/<%= match.player2_deck_id %>" class="btn btn-sm btn-primary float-right">Player 2 Deck</a>
+          <a href="/decks/show/player/<%= match.player1_id %>/deck/<%= match.player1_deck_id %>" class="btn btn-sm btn-primary">P1 Deck</a>
+          <a href="/decks/show/player/<%= match.player2_id %>/deck/<%= match.player2_deck_id %>" class="btn btn-sm btn-primary float-right">P2 Deck</a>
         </div>
       </div>
     </div>
