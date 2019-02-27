@@ -1,18 +1,39 @@
+<script>
+  $(document).ready(function() {
+    jQuery("time.timeago").timeago();
+
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+  });
+</script>
+
 </br>
 <h1 class="text-center">Recent Matches</h1>
 <div class="row">
 <% @matches.each do |match| %>
-  <div class="col-sm-4 py-2">
+  <div class="col-sm-6 col-md-3 py-2">
     <div class="card">
       <div class="card card-body h-100">
         <h5 class="card-title">Match ID <%= match.id %></h5>
-        <p class=card-text">Status: <%= match.status %></p>
-        <p class=card-text">Updated at: <%= match.updated_at %></p>
+        <p class="card-text">Status: <%= match.status %></p>
+        <p class="card-text">Updated: <time class="timeago" datetime="<%= match.updated_at.iso8601 %>"></p>
+        <% if match.status == 'Playing' %>
+        <span data-toggle="tooltip" title="Match in progess">
+        <a href="/matches/show/<%= match.id %>" class="btn btn-primary disabled w-100" disabled>Match Details</a>
+        </span>
+        <% else %>
         <a href="/matches/show/<%= match.id %>" class="btn btn-primary">Match Details</a>
+        <% end %>
         <p>
-        <div>
-          <a href="/decks/show/player/<%= match.player1_id %>/deck/<%= match.player1_deck_id %>" class="btn btn-primary">Player 1 Deck</a>
-          <a href="/decks/show/player/<%= match.player2_id %>/deck/<%= match.player2_deck_id %>" class="btn btn-primary float-right">Player 2 Deck</a>
+        <div class="btn-toolbar justify-content-between">
+          <a href="/player/<%= match.player1_id %>" class="btn btn-primary">Player 1</a>
+          <a href="/player/<%= match.player2_id %>" class="btn btn-primary float-right">Player 2</a>
+        </div>
+        <p>
+        <div class="btn-toolbar justify-content-between">
+          <a href="/decks/show/player/<%= match.player1_id %>/deck/<%= match.player1_deck_id %>" class="btn btn-sm btn-primary">Player 1 Deck</a>
+          <a href="/decks/show/player/<%= match.player2_id %>/deck/<%= match.player2_deck_id %>" class="btn btn-sm btn-primary float-right">Player 2 Deck</a>
         </div>
       </div>
     </div>
