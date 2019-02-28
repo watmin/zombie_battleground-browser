@@ -54,6 +54,7 @@ class DecksController < ApplicationController
     @cards = []
 
     @deck = ZombieBattleground::Api.deck(id: params[:id].to_i)
+    @deck_faction = ZombieBattleground::Api.deck_faction(@deck.hero_id)
     @deck.cards.each do |simple_card|
       Array.new(simple_card.amount) do
         @cards << all_cards.find { |card| card.name == simple_card.card_name }

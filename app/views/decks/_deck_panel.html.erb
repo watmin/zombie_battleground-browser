@@ -47,6 +47,15 @@
       }
     });
   });
+
+  var allCards = <%= @all_cards.to_json.html_safe %>;
+  <% if @cards.nil? %>
+  var deckCards = <%= Array.new(30).to_json.html_safe %>;
+  var heroFaction = null;
+  <% else %>
+  var deckCards = <%= @cards.to_json.html_safe %>;
+  var heroFaction = "<%= @deck_faction %>";
+  <% end %>
 </script>
 
 <style>
@@ -154,6 +163,10 @@
           id="card-<%= card_place %>"
           class="card-img-top zbg-card-image"
           src="<%= image_url("empty-card.svg") %>"
+          card-mould_id="null"
+          card-version="null"
+          card-name="null"
+          card-empty="true"
           data-toggle="tooltip"
           data-placement="bottom"
           title="Add a card below"
@@ -173,6 +186,7 @@
           card-mould_id="<%= card.mould_id %>"
           card-version="<%= card.version %>"
           card-name="<%= card.name %>"
+          card-empty="false"
           data-toggle="tooltip"
           data-placement="bottom"
           title="<%= card.name %>"
